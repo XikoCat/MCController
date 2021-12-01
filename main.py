@@ -34,13 +34,14 @@ def send200(self, message):
 
 def server_start():
     global server
+    java_dir = os.getenv("Java_executable")
     minecraft_dir = os.getenv("MC_Server_dir")
     server_jar = os.getenv("MC_Server_jar_file")
     minRam = os.getenv("MC_alloc_mem_min")
     maxRam = os.getenv("MC_alloc_mem_max")
     java_parameters = "-XX:+UseG1GC -Dsun.rmi.dgc.server.gcInterval=2147483646 -XX:+UnlockExperimentalVMOptions -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M -Dfml.readTimeout=180"
 
-    executable = f"~/minecraft-server/jdk8u312-b07/bin/java -server {java_parameters} -Xms{minRam} -Xmx{maxRam} -jar {server_jar} nogui"
+    executable = f"{java_dir} -server {java_parameters} -Xms{minRam} -Xmx{maxRam} -jar {server_jar} nogui"
     if server is not None:
         return 1  # "Server is already started"
     print(
