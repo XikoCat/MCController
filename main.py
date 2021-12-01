@@ -8,8 +8,8 @@ from mcrcon import MCRcon
 
 load_dotenv()
 
-hostName = "192.168.2.10"
-serverPort = 25501
+hostName = ip = os.getenv("Microservice_hostname")
+serverPort = ip = os.getenv("Microservice_port")
 
 server = None
 
